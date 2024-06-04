@@ -5,7 +5,7 @@ def sort_products_by_price(products: list[dict], category: str | None = None) ->
     то сортировка производится для всех продуктов
     """
 
-    if category != None:
+    if category is not None:
         return [
             product
             for product in sorted(products, key=lambda product: product["price"], reverse=True)
@@ -14,27 +14,26 @@ def sort_products_by_price(products: list[dict], category: str | None = None) ->
     return sorted(products, key=lambda product: product["price"], reverse=True)
 
 
-def get_orders_stats_per_month(orders: list[dict]) -> list[dict]:
+def get_orders_stats_per_month(orders: list[dict]) -> dict:
     """Функция принимает на вход список словарей, представляющих информацию о заказах в интернет-магазине
     и возвращает словарь, содержащий информацию о средней стоимости заказа и количестве заказов за каждый месяц
     """
 
     orders_stats_per_month = {}
     for order in orders:
-        order['YYYY-MM'] = order['date'][:7]
-        order['order_value'] = 0
-        for item in order['items']:
-            order['order_value'] += item['price'] * item['quantity']
-        orders_stats_per_month[order['YYYY-MM']] = {'average_order_value': 0, 'order_count': 0}
+        order["YYYY-MM"] = order["date"][:7]
+        order["order_value"] = 0
+        for item in order["items"]:
+            order["order_value"] += item["price"] * item["quantity"]
+        orders_stats_per_month[order["YYYY-MM"]] = {"average_order_value": 0.0, "order_count": 0.0}
 
     for order in orders:
-        orders_stats_per_month[order['YYYY-MM']]['order_count'] += 1
-        orders_stats_per_month[order['YYYY-MM']]['average_order_value'] += order['order_value']
+        orders_stats_per_month[order["YYYY-MM"]]["order_count"] += 1
+        orders_stats_per_month[order["YYYY-MM"]]["average_order_value"] += order["order_value"]
 
     for month in orders_stats_per_month:
-        orders_stats_per_month[month]['average_order_value'] = round(
-                orders_stats_per_month[month]['average_order_value'] / orders_stats_per_month[month]['order_count'],
-                2
+        orders_stats_per_month[month]["average_order_value"] = round(
+            orders_stats_per_month[month]["average_order_value"] / orders_stats_per_month[month]["order_count"], 2
         )
 
     return orders_stats_per_month
