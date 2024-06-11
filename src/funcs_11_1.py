@@ -1,4 +1,4 @@
-def non_empty_truths(input_data:list) -> list:
+def non_empty_truths(input_data: list) -> list:
     """Функция с помощью генераторов списков должна вычислять копию входного списка списков,
     «очищенную» от ложных элементов (False, любые пустые коллекции, 0 и None-значения),
     а заодно и от пустых списков — такие могу присутствовать сами по себе
@@ -29,7 +29,6 @@ def replicate_each(n, xs):
     return [i for x in xs for i in [x for j in range(n)]]
 
 
-
 if __name__ in "__main__":
     print(non_empty_truths([]))
     # []
@@ -44,6 +43,6 @@ if __name__ in "__main__":
 
     print(list(my_map(lambda x: x + 2, [-1, 2, -3])))  # [1, 4, -1]
     print(list(my_filter(lambda x: x % 2 == 1, range(10))))  # [1, 3, 5, 7, 9]
-    print(list(replicate_each(1, [1, 'a'])))  # [1, 'a']
-    print(list(replicate_each(3, [1, 'a'])))  # [1, 1, 1, 'a', 'a', 'a']
-    print(list(replicate_each(0, [1, 'a'])))  # []
+    print(list(replicate_each(1, [1, "a"])))  # [1, 'a']
+    print(list(replicate_each(3, [1, "a"])))  # [1, 1, 1, 'a', 'a', 'a']
+    print(list(replicate_each(0, [1, "a"])))  # []
