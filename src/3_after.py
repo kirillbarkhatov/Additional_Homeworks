@@ -30,7 +30,7 @@ def logging(func: Callable) -> Callable:
 def counter(func: Callable) -> Callable:
     """Декоратор считает и выводит количество раз, которое функция была вызвана."""
 
-    def wrapper(*args: tuple, **kwargs: dict) -> Any:
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
         wrapper.count = wrapper.count + 1
         res = func(*args, **kwargs)
         print(f'{func.__name__} была использована: {wrapper.count} раз(а)')
